@@ -1,0 +1,830 @@
+/* Reset básico para asegurar que no hay márgenes o padding por defecto */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background: linear-gradient(135deg, #ff0000 0%, #000000 100%);
+  background-attachment: fixed; /* Esto mantiene el gradiente fijo al hacer scroll */
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+.app {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  background: #1a1a1a;
+}
+
+/* Contenido principal */
+.main-content {
+  width: 100%;
+  margin-top: 0;
+  padding: 0;
+  background: transparent;
+  position: relative;
+  z-index: 2;
+}
+
+/* Header */
+header {
+  width: 100%;
+  padding: 15px 5%;
+  margin: 0;
+  background: rgba(26, 26, 26, 0.95);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  position: fixed;
+  top: -100%;  /* Cambiar de -100px a -100% para ocultarlo completamente */
+  left: 0;
+  z-index: 1000;
+  transition: all 0.3s ease;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  opacity: 0;  /* Agregar opacidad 0 inicial */
+  visibility: hidden;  /* Ocultar completamente */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+header.scrolled {
+  top: 0;
+  opacity: 1;
+  visibility: visible;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  white-space: nowrap;
+}
+
+/* Secciones */
+.section {
+  width: 100%;
+  padding: 80px 5% 40px;
+  margin: 0;
+  background: rgba(42, 42, 42, 0.8);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  min-height: 100vh;
+  scroll-margin-top: 80px;
+  position: relative; /* Aseguramos que las secciones estén por encima del hero */
+  z-index: 2;
+}
+
+/* Contenedores de galerías */
+.gallery,
+.brand-gallery {
+  width: 100%;
+  padding: 20px 5%;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+/* Footer */
+.footer {
+  width: 100%;
+  padding: 40px 0;
+  margin: 0;
+  background: rgba(26, 26, 26, 0.9);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  position: relative;
+  z-index: 2;
+}
+
+.footer-content {
+  width: 100%;
+  padding: 0 5%;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 40px;
+}
+
+/* Hero Section */
+.hero-section {
+  width: 100vw;
+  height: 100vh; /* Cambiamos min-height por height */
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #ff0000 0%, #000000 50%, Yellow 100%);
+  position: fixed; /* Fijamos el hero */
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+/* Contenido del Hero */
+.hero-content.animated-hero {
+  width: 90%;
+  max-width: 1200px;
+  padding: 20px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.animated-hero h1 {
+  font-size: 4.5rem;
+  margin-bottom: 2rem;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.animated-hero .hero-subtitle {
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.animated-hero .cursor {
+  display: inline-block;
+  width: 3px;
+  margin-left: 5px;
+  animation: blink 1s infinite;
+  color: white;
+}
+
+.hero-description {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 1s ease;
+}
+
+.hero-description.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.animated-hero p {
+  margin: 10px 0;
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Efecto de partículas en el fondo */
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.3) 100%);
+  animation: pulse 4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 0.3;
+  }
+}
+
+/* Formulario */
+form {
+  width: 90%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Ubicación */
+.location {
+  width: 90%;
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  background: rgba(51, 51, 51, 0.9);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+}
+
+/* Media queries */
+@media (min-width: 1440px) {
+  .section,
+  .gallery,
+  .brand-gallery,
+  .footer-content {
+    padding-left: calc((100% - 1400px) / 2);
+    padding-right: calc((100% - 1400px) / 2);
+  }
+}
+
+@media (max-width: 768px) {
+  .section,
+  .gallery,
+  .brand-gallery {
+    padding: 20px 3%;
+  }
+  
+  .hero-content {
+    width: 95%;
+  }
+
+  header {
+    flex-direction: column;
+    gap: 15px;
+    padding: 10px 20px;
+  }
+
+  nav {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  nav button {
+    padding: 8px 15px;
+    font-size: 14px;
+  }
+
+  .animated-hero h1 {
+    font-size: 3rem;
+  }
+
+  .animated-hero .hero-subtitle {
+    font-size: 1.8rem;
+  }
+
+  .hero-description p {
+    font-size: 1rem;
+  }
+}
+
+nav {
+  margin: 0;
+  display: flex;
+  gap: 15px;
+}
+
+nav button {
+  padding: 10px 20px;
+  border: none;
+  background: #333333;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+nav button:hover {
+  background: #cc0000; /* Un tono más oscuro al hover */
+  color: white;
+  opacity: 0.8;
+}
+
+nav button.active {
+  background: #ff0000; /* Naranja/rojo */
+  color: white;
+}
+
+.brands {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.brands span {
+  padding: 10px 20px;
+  background: #f8f9fa;
+  border-radius: 5px;
+}
+
+.services-list {
+  list-style: none;
+  padding: 0;
+}
+
+.services-list li {
+  padding: 10px 0;
+  border-bottom: 1px solid #444444;
+}
+
+.gallery-item {
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.gallery-card {
+  background: rgba(51, 51, 51, 0.9);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.gallery-card:hover {
+  transform: translateY(-5px);
+  background: rgba(68, 68, 68, 0.9);
+}
+
+.gallery-card-image {
+  position: relative;
+}
+
+.gallery-card-image img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.gallery-card-category {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(0,0,0,0.7);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 0.8em;
+}
+
+.gallery-card-content {
+  padding: 15px;
+  color: white;
+}
+
+.gallery-card-date {
+  color: #999;
+  font-size: 0.9em;
+}
+
+.brand-card {
+  background: rgba(51, 51, 51, 0.9);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+  color: white;
+}
+
+.brand-card:hover {
+  transform: translateY(-5px);
+  background: rgba(68, 68, 68, 0.9);
+}
+
+.brand-logo {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  margin-bottom: 15px;
+}
+
+.footer-section h4 {
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+.footer-section p {
+  color: #ccc;
+  margin-bottom: 10px;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 20px;
+  margin-top: 40px;
+  border-top: 1px solid #444;
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: bounce 2s infinite;
+  z-index: 2;
+  cursor: pointer;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-30px);
+  }
+  60% {
+    transform: translateY(-15px);
+  }
+}
+
+/* Estilos para el formulario de contacto */
+.contact-form-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-weight: 500;
+  color: white;
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  background: rgba(51, 51, 51, 0.9);
+  color: white;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #ff0000;
+  box-shadow: 0 0 0 2px rgba(255, 0, 0, 0.2);
+}
+
+.submit-button {
+  padding: 15px 30px;
+  background: #ff0000;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.submit-button:hover {
+  background: #cc0000;
+  transform: translateY(-2px);
+}
+
+.submit-button:disabled {
+  background: #666;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.submit-button.sending {
+  position: relative;
+  padding-right: 40px;
+}
+
+.submit-button.sending::after {
+  content: '';
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  width: 20px;
+  height: 20px;
+  margin-top: -10px;
+  border: 2px solid white;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.form-message {
+  padding: 15px;
+  border-radius: 8px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.form-message.success {
+  background: rgba(0, 255, 0, 0.1);
+  border: 1px solid rgba(0, 255, 0, 0.3);
+  color: #00ff00;
+}
+
+.form-message.error {
+  background: rgba(255, 0, 0, 0.1);
+  border: 1px solid rgba(255, 0, 0, 0.3);
+  color: #ff0000;
+}
+
+/* Estilos para los links del footer */
+.footer a {
+  color: #ccc;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer a:hover {
+  color: #ff0000;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Contenedor para los botones flotantes */
+.floating-buttons {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  gap: 15px;
+  z-index: 1000;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+}
+
+.floating-buttons.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Restaurar estilos del botón de WhatsApp */
+.whatsapp-button {
+  width: 60px;
+  height: 60px;
+  background-color: #25D366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.whatsapp-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+.whatsapp-button svg {
+  width: 35px;
+  height: 35px;
+}
+
+/* Ajustar el contenedor de Calendly */
+.calendly-badge-widget {
+  position: static !important;
+  right: auto !important;
+  bottom: auto !important;
+  left: auto !important; /* Asegurar que no aparezca a la izquierda */
+  transform: none !important;
+}
+
+/* Ocultar el botón por defecto de Calendly */
+.calendly-badge-widget:not(.floating-buttons *) {
+  display: none !important;
+}
+
+/* Asegurar que el botón de Calendly tenga el mismo tamaño y estilo que WhatsApp */
+.calendly-badge-widget .calendly-badge-content {
+  width: 60px !important;
+  height: 60px !important;
+  padding: 10px !important;
+  border-radius: 50% !important;
+  position: static !important;
+  transform: none !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25) !important;
+}
+
+.calendly-badge-widget .calendly-badge-content:hover {
+  transform: scale(1.1) !important;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Estilos para la sección Acerca de */
+.about-section {
+  width: 100%;
+  padding: 40px 5%;
+}
+
+.about-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.about-text {
+  color: white;
+}
+
+.about-text h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #ff0000;
+}
+
+.about-text p {
+  margin-bottom: 20px;
+  line-height: 1.6;
+  font-size: 1.1rem;
+}
+
+.about-video {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* Aspecto 16:9 */
+  height: 0;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.video-frame {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .about-content {
+    grid-template-columns: 1fr;
+  }
+  
+  .about-text h2 {
+    font-size: 2rem;
+  }
+  
+  .about-text p {
+    font-size: 1rem;
+  }
+}
+
+/* Estilos para el widget de Reservio */
+.reservio-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.reservio-wrapper {
+  background: rgba(0, 0, 0, 0.9);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+.reservio-container h2 {
+  color: white;
+  margin-bottom: 20px;
+  font-size: 2rem;
+  text-align: center;
+}
+
+/* Estilos para el widget de Calendly */
+/* .calendly-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background: transparent;
+}
+
+.calendly-container h2 {
+  color: white;
+  margin-bottom: 20px;
+  font-size: 2rem;
+}
+
+.calendly-inline-widget {
+  min-width: 320px;
+  height: 700px;
+  background: rgba(26, 26, 26, 0.8) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+} */
+
+/* Estilos para el título animado */
+.animated-title {
+  margin: 0;
+  font-size: 1.8rem;
+  white-space: nowrap;
+  color: white;
+}
+
+.animated-title .cursor {
+  display: inline-block;
+  width: 2px;
+  animation: blink 1s infinite;
+  color: #ff0000;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Ajustamos el contenedor principal */
+.main-content main {
+  position: relative;
+  z-index: 2;
+  margin-top: 100vh;
+  background: #1a1a1a;
+}
+
+/* Asegurar que el footer esté dentro del flujo del contenido */
+.main-content > div {
+  position: relative;
+  z-index: 2;
+  background: #1a1a1a;
+}
